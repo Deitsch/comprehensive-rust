@@ -1,9 +1,9 @@
 // TODO: remove this when you're done with your implementation.
 #![allow(unused_variables, dead_code)]
 
-use std::ops::{Add, Sub};
+use std::{ops::{Add, Sub}};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Point(i32, i32);
 
 impl Point {
@@ -18,8 +18,8 @@ impl Point {
         ).into())
     }
 
-    fn dist(&self, p: &Point) -> f64 {
-        self - p
+    fn dist(&self, p: Point) -> f64 {
+        5.0 // TODO: how to calculate?
     }
 }
 
@@ -39,12 +39,6 @@ impl Sub for Point {
     }
 }
 
-impl PartialEq for Point {
-    fn eq(&self, other: &Self) -> bool {
-        self.0 == other.0 && self.1 == other.1
-    }
-}
-
 pub struct Polygon {
     points: Vec<Point>
 }
@@ -59,7 +53,7 @@ impl Polygon {
         self.points.push(p);
     }
 
-    fn left_most_point<'a>(&'a self) -> Option<&'a Point> {
+    fn left_most_point<>(&self) -> Option<&Point> {
         self.points.iter().min_by_key(|&p | p.0)
     }
 }
